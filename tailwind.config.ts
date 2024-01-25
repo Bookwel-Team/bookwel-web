@@ -12,7 +12,7 @@ const config: Config = {
           secondary: '#080E46',
           accent: '#F3BB3C',
           neutral: '#F3F3F2',
-          'base-100': '#f0ffff',
+          'base-100': '#F3F3F2',
           info: '#00ccff',
           success: '#aded00',
           warning: '#b24100',
