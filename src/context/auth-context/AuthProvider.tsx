@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, useState } from 'react';
 import { TAuthProviderProps } from './types';
 import { AuthContext } from './auth-context';
