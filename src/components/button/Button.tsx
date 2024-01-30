@@ -1,7 +1,6 @@
 import { FC, ReactElement, cloneElement } from 'react';
-import { TButtonProps } from './type';
-import { FaTriangleExclamation } from 'react-icons/fa6';
 import { BsTriangle } from 'react-icons/bs';
+import { TButtonProps } from './type';
 
 export const Button: FC<TButtonProps> = ({ label, className, color = 'primary', icon, isLoading, disabled, ...others }) => {
   return (

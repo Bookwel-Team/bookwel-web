@@ -21,8 +21,8 @@ export default function Home() {
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
       <div>
-        <span className='animate-spin'>
-          <BsTriangle className='m-2 -translate-y-[1px] text-primary' size={24} />
+        <span className=''>
+          <BsTriangle className='m-2 animate-spin text-primary' size={24} />
         </span>
       </div>
     </div>

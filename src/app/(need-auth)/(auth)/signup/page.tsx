@@ -27,7 +27,7 @@ const Page = () => {
     }
   }, [user, error, setUser, form, router]);
 
-  const handleSubmit = () => form.handleSubmit(({ password, email }) => fetch(email, password));
+  const handleSubmit = form.handleSubmit(({ password, email }) => fetch(email, password));
   return (
     <div>
       <h1 className='text-2xl font-bold mb-7'>Sign Up</h1>
