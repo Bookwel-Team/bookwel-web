@@ -5,3 +5,7 @@
 .btn-primary {
   color: white;
 }
+
+.bg-sidebar {
+  @apply bg-purple-400;
+}
