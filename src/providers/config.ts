@@ -1,13 +1,11 @@
 import { config } from 'dotenv';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
 
 config();
 
 export const firebaseConfig = {
-  apiKey: process.env.NEXT_APP_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
   databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
