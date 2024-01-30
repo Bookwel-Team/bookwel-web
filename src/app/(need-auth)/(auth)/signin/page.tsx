@@ -2,8 +2,8 @@
 import { Button, RHFPasswordInput, RHFTextInput } from '@/components';
 import { useAuth } from '@/context/auth-context';
 import { useFetch } from '@/hooks/useFetch';
-import { authProvider } from '@/providers/auth-provider';
-import { FieldErrorMessage } from '@/utilities/constants/field-error-messages';
+import { TSingIn, authProvider } from '@/providers';
+import { FieldErrorMessage, HOME_PAGE } from '@/utilities/constants';
 import { TLoginInput, loginResolver } from '@/utilities/resolvers/login-resolver';
 import { User } from 'firebase/auth';
 import Link from 'next/link';
@@ -12,12 +12,10 @@ import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FaLock as FaLockIcon, FaUser as FaUserIcon } from 'react-icons/fa';
 
-const HOME_PAGE = '/home';
-
 const Page = () => {
   const form = useForm<TLoginInput>({ mode: 'all', resolver: loginResolver });
   const { setUser } = useAuth();
-  const { isLoading, data: user, fetch, error } = useFetch<User, typeof authProvider.signIn>(authProvider.signIn);
+  const { isLoading, data: user, fetch, error } = useFetch<User, TSingIn>(authProvider.signIn);
   const router = useRouter();
 
   useEffect(() => {
