@@ -32,19 +32,26 @@ export const RHFTextInput: FC<InputProps> = props => {
         </div>
       )}
       <div className='relative w-fit'>
-        <input
-          {...others}
-          {...register(name)}
-          placeholder={label}
-          disabled={disabled}
-          className={`input input-bordered ${!!error ? 'border-error' : 'border-neutral'} w-full max-w-xs ${endIcon && 'pr-10'} ${startIcon && 'pl-10'} ${className}`}
-        />
+        <div className='relative'>
+          <input
+            {...others}
+            {...register(name)}
+            placeholder={label}
+            disabled={disabled}
+            className={`input input-bordered ${!!error ? 'border-error' : 'border-neutral'} w-full max-w-xs ${endIcon && 'pr-10'} ${startIcon && 'pl-10'} ${className}`}
+          />
 
-        {!!startIcon && <span className={`absolute top-1/2 -translate-y-1/2 left-4 ${error && 'text-error'}`}>{startIcon}</span>}
-        {!!endIcon && (
-          <span onClick={onClickEndIcon} className={`absolute top-1/2 -translate-y-1/2 right-4 ${error && 'text-error'}`}>
-            {endIcon}
-          </span>
+          {!!startIcon && <span className={`absolute top-1/2 -translate-y-1/2 left-4 ${error && 'text-error'}`}>{startIcon}</span>}
+          {!!endIcon && (
+            <span onClick={onClickEndIcon} className={`absolute top-1/2 -translate-y-1/2 right-4 ${error && 'text-error'}`}>
+              {endIcon}
+            </span>
+          )}
+        </div>
+        {error && (
+          <div className='label'>
+            <span className='label-text-alt text-error'>{error?.message?.toString()}</span>
+          </div>
         )}
       </div>
     </label>
