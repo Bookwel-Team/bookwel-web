@@ -12,7 +12,7 @@
     "prettier:write": "prettier --write \"src/**/*.{ts,tsx}\" \"./**/*.{json,yml,yaml}\"",
     "cy:open": "cypress open",
     "cy:open-component": "cypress open --component",
-    "test": "cypress run --component --spec './**/!(*.it).cy.tsx'"
+    "test": "cypress run --component --spec 'cypress/e2e/**/*'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -28,6 +28,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.12.20",
     "@types/node": "^20.11.16",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
