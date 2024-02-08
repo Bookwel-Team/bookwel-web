@@ -8,9 +8,10 @@ import { HOME_PAGE, LOGIN_PAGE } from '../../utilities/constants';
 import { useAuth } from '../../utilities/context/auth-context';
 import { useFetch } from '../../utilities/hooks';
 import { FaLock as FaLockIcon, FaMailBulk as FaMailBulkIcon } from 'react-icons/fa';
+import { signUpResolver } from '../../utilities/resolvers';
 
 export const SignUp = () => {
-  const form = useForm({ mode: 'all' });
+  const form = useForm({ mode: 'all', resolver: signUpResolver });
   const { setUser } = useAuth();
   const { isLoading, data: user, fetch, error } = useFetch<User, TSingUp>(authProvider.signUp);
   const navigate = useNavigate();
