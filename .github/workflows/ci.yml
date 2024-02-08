@@ -23,18 +23,18 @@ jobs:
         run: |
           echo '${{ secrets.CONFIG_GITHUB_NPM }}' > ~/.npmrc
 
-      - run: npm install --legacy-peer-deps
-
-      - name: Cypress dependencies
-        # From: https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements, Ubuntu section
-        run: |
-          sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-
       - name: Component testing
-        run: npm run test:component
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          install-command: npm install --legacy-peer-deps
+          component: true
 
       - name: E2E testing
-        run: npm run test:e2e
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          install-command: npm install --legacy-peer-deps
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
