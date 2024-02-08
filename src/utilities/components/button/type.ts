@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 export type TButtonProps = {
   isLoading?: boolean;
