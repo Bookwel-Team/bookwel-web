@@ -11,10 +11,11 @@
     "prettier:check": "prettier --check \"src/**/*.{ts,tsx}\" \"./**/*.{json,yml,yaml}\"",
     "prettier:write": "prettier --write \"src/**/*.{ts,tsx}\" \"./**/*.{json,yml,yaml}\"",
     "cy:open": "cypress open",
-    "cy:open-component": "cypress open --component",
-    "test:e2e": "cypress run --e2e",
+    "cy:open:component": "cypress open --component",
     "cy:open:e2e": "cypress open --e2e",
-    "test": "cypress run --spec 'cypress/e2e/**/*'"
+    "test:component": "cypress run --component",
+    "test:e2e": "cypress run --e2e",
+    "test": "cypress run --spec './**/*.{tsx,ts}' 'src/__test__/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
