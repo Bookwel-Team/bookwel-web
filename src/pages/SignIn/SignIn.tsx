@@ -36,7 +36,7 @@ export const SignIn = () => {
         <form onSubmit={handleSubmit} className='basis-2/3'>
           <RHFTextInput label='Email' name='email' className='pr-10' hideLabel startIcon={<FaUserIcon />} />
           <RHFPasswordInput label='Password' name='password' hideLabel startIcon={<FaLockIcon />} />
-          <Button label='Submit' isLoading={isLoading} type='submit' className='w-full' />
+          <Button label='Submit' isLoading={isLoading} type='submit' className='w-full btn-primary' />
           <div className='mt-2 flex justify-between'>
             <Link to={SING_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'></Link>
             <Link to={SING_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'>
