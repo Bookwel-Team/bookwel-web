@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -18,20 +19,29 @@
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
 //
-// -- This is a dual command --
+// // -- This is a dual command --
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
 //
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+export const dataCy = (name: string) => {
+  return cy.get(`[data-cy='${name}']`);
+};
+export const nameCy = (name: string) => {
+  return cy.get(`[name='${name}']`);
+};
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      nameCy: typeof nameCy;
+      dataCy: typeof dataCy;
+    }
+  }
+}
+
+Cypress.Commands.add('dataCy', dataCy);
+Cypress.Commands.add('nameCy', nameCy);
