@@ -1,10 +1,12 @@
-import { Button } from './components';
+import { RouterProvider } from 'react-router-dom';
+import { AppRouter } from './utilities/router';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   return (
-    <>
-      <Button label='My button' />
-    </>
+    <SnackbarProvider anchorOrigin={{ horizontal: 'right', vertical: 'top' }}>
+      <RouterProvider router={AppRouter} />
+    </SnackbarProvider>
   );
 }
 
