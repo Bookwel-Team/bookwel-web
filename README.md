@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/Bookwel-Team/bookwel-web/graph/badge.svg?token=2XP4JQZLQP)](https://codecov.io/gh/Bookwel-Team/bookwel-web)
+
 # Book Suggestion AI
 
 Enhance your reading experience with our AI-powered book suggestion project! This tool leverages advanced algorithms to recommend books based on user interests, providing a personalized and enriching literary journey.
