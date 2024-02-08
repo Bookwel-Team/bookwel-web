@@ -6,9 +6,9 @@ const signUpValidator = zod
   .object({
     email: zod.string().email(),
     password: zod.string().min(7, { message: fieldErrorMessages.password_too_sort }),
-    confirm: zod.string(),
+    confirmPassword: zod.string().min(7, { message: fieldErrorMessages.password_too_sort }),
   })
-  .refine(({ password, confirm }) => password === confirm, fieldErrorMessages.password_not_match);
+  .refine(({ password, confirmPassword }) => password === confirmPassword, { message: fieldErrorMessages.password_not_match, path: ['confirmPassword'] });
 
 export const signUpResolver = zodResolver(signUpValidator);
 

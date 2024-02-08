@@ -7,7 +7,7 @@ export const Button: FC<TButtonProps> = ({ label, className, color = 'primary', 
 
   return (
     <div className='relative'>
-      <button className={`btn ${buttonColor} text-center ${className} ${others}`} disabled={isLoading || disabled}>
+      <button className={`btn ${buttonColor} text-center ${className}`} {...others} disabled={isLoading || disabled}>
         {icon &&
           cloneElement(icon as ReactElement, {
             size: 17,

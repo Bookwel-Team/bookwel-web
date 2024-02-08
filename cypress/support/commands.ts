@@ -34,14 +34,18 @@ export const nameCy = (name: string) => {
   return cy.get(`[name='${name}']`);
 };
 
+const typeCy = (name: string) => cy.get(`[type='${name}']`);
+
 declare global {
   namespace Cypress {
     interface Chainable {
       nameCy: typeof nameCy;
       dataCy: typeof dataCy;
+      typeCy: typeof typeCy;
     }
   }
 }
 
 Cypress.Commands.add('dataCy', dataCy);
 Cypress.Commands.add('nameCy', nameCy);
+Cypress.Commands.add('typeCy', typeCy);
