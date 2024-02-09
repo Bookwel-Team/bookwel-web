@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Category } from '@onitsiky/bookwel-typescript-client';
 import { FC, useEffect, useState } from 'react';
 import { TGetAllCategory } from '../../providers';
 import { categoryProvider } from '../../providers/category-provider';
 import { useFetch } from '../../utilities/hooks';
 import { CategoryFilterProps } from '.';
+import style from './style.module.css';
 
 export const CategoryFilter: FC<CategoryFilterProps> = ({ onChange }) => {
   const { data, fetch, isLoading } = useFetch<Category[], TGetAllCategory>(categoryProvider.getAll);
@@ -17,24 +19,31 @@ export const CategoryFilter: FC<CategoryFilterProps> = ({ onChange }) => {
   }, []);
 
   const handleChange = (category: Category) => () => {
-    setCurrentCategory(currentCategory);
-    onChange(category);
+    setCurrentCategory(category);
   };
 
+  useEffect(() => {
+    if (currentCategory) {
+      onChange({ ...currentCategory, name: currentCategory.name === 'None' ? undefined : currentCategory.name });
+    }
+  }, [currentCategory]);
+
   return (
-    <div>
-      {data &&
-        data.length > 0 &&
-        !isLoading &&
-        data.map(category => (
-          <span
-            onClick={handleChange(category)}
-            key={category.id}
-            className={`py-3 px-5 border cursor-pointer border-secondary mx-2 ${currentCategory?.id === category.id ? 'bg-secondary text-white' : 'text-secondary'}`}
-          >
-            <span className=''>{category.name}</span>
-          </span>
-        ))}
+    <div className={style.categoryFilterContainer}>
+      <div className='flex justify-start items-center w-max'>
+        {data &&
+          data.length > 0 &&
+          !isLoading &&
+          [{ name: 'None' } as Category, ...data].map(category => (
+            <div
+              onClick={handleChange(category)}
+              key={category.id}
+              className={`py-3 px-5 border cursor-pointer border-secondary mx-2 ${currentCategory?.id === category.id ? 'bg-secondary text-white' : 'text-secondary'}`}
+            >
+              <p className={style.filterLabel}>{category.name}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

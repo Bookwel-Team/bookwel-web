@@ -28,7 +28,7 @@ export const SignUp = () => {
     if (error) {
       form.setError('password', { message: (error.response?.data as any)?.error?.message });
     }
-  }, [user, error, setUser, form, navigate, errorUser, userCreated]);
+  }, [user, error, setUser, form, navigate, errorUser, userCreated, createUser]);
 
   const handleSubmit = form.handleSubmit(({ password, email }) => fetch(email, password));
   return (

@@ -27,7 +27,7 @@ export const RHFTextInput: FC<InputProps> = props => {
   return (
     <label className={`form-control my-3 w-full ${containerClassName}`}>
       {!hideLabel && (
-        <div className={`${!!error ? 'text-error' : 'text-neutral'} label`} ref={labelContainer}>
+        <div className={`${!error ? 'text-error' : 'text-neutral'} label`} ref={labelContainer}>
           <span className='label-text'>{label}</span>
         </div>
       )}
@@ -38,7 +38,7 @@ export const RHFTextInput: FC<InputProps> = props => {
             {...register(name)}
             placeholder={label}
             disabled={disabled}
-            className={`input input-bordered ${!!error ? 'border-error' : 'border-neutral'} w-full max-w-xs ${endIcon && 'pr-10'} ${startIcon && 'pl-10'} ${className}`}
+            className={`input input-bordered ${!error ? 'border-error' : 'border-neutral'} w-full max-w-xs ${endIcon && 'pr-10'} ${startIcon && 'pl-10'} ${className}`}
           />
 
           {!!startIcon && <span className={`absolute top-1/2 -translate-y-1/2 left-4 ${error && 'text-error'}`}>{startIcon}</span>}
