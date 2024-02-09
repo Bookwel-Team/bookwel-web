@@ -107,7 +107,6 @@ export const CategoryPage = () => {
               ? resultSearch?.map(one => (
                   <SoftButton
                     label={`${one.name}`}
-                    test-id='category-button'
                     active={one.reaction_status === ReactionStatus.LIKE}
                     clickFn={() => reactOneCategory(one)}
                     key={`©at-${one.id}`}
@@ -131,6 +130,7 @@ export const CategoryPage = () => {
             <button
               className='btn btn-outline mt-4 text-center rounded-3xl bg-primary text-white dark:hover:bg-primary self-right'
               style={{ minHeight: '5px', height: '40px', right: 0 }}
+              data-cy='nextButton'
               onClick={reactAllCategory}
             >
               Next <FaChevronRight />
