@@ -5,7 +5,7 @@ import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { FaChevronRight } from 'react-icons/fa';
 import { useFetch } from '../../utilities/hooks';
 import { Category, CategoryReaction, CrupdateReaction, ReactionStatus } from '@onitsiky/bookwel-typescript-client';
-import { TCategory, TReaction } from '../../providers';
+import { TCategory } from '../../providers';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../utilities/context/auth-context';
 import { IoClose } from 'react-icons/io5';
