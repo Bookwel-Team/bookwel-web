@@ -3,7 +3,7 @@ import { apiProvider } from '.';
 
 export const reactionProvider = {
   reactCategory: async (categoryId: string, createReaction: CrupdateReaction) => {
-    const response = await apiProvider.reactionApi.crupdateReactionToACategory(categoryId, createReaction);
+    const response = await apiProvider.reactionApi().crupdateReactionToACategory(categoryId, createReaction);
     return response.data;
   },
 };
