@@ -4,11 +4,12 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { TSingUp, TCreateUser, authProvider, userProvider } from '../../providers';
 import { RHFTextInput, RHFPasswordInput, Button } from '../../utilities/components';
-import { HOME_PAGE, LOGIN_PAGE } from '../../utilities/constants';
+import { LOGIN_PAGE } from '../../utilities/constants';
 import { useAuth } from '../../utilities/context/auth-context';
 import { useFetch } from '../../utilities/hooks';
 import { FaLock as FaLockIcon, FaMailBulk as FaMailBulkIcon } from 'react-icons/fa';
 import { signUpResolver } from '../../utilities/resolvers';
+import { CATEGORIES } from '../../utilities/constants/path';
 
 export const SignUp = () => {
   const form = useForm({ mode: 'all', resolver: signUpResolver });
@@ -19,7 +20,7 @@ export const SignUp = () => {
 
   useEffect(() => {
     if (!error && !!user && !errorUser && !!userCreated) {
-      navigate(HOME_PAGE);
+      navigate(CATEGORIES);
     }
     if (!error && !!user) {
       setUser(user);
