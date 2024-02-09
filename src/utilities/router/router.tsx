@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Books, Home, SignIn, SignUp, CategoryPage } from '../../pages';
+import { Books, Home, SignIn, SignUp, CategoryPage, NotFound } from '../../pages';
 import { AuthLayout, NeedAuth } from '../Layouts';
 
 export const AppRouter = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: '/',
