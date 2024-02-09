@@ -9,6 +9,8 @@ export default defineConfig({
       exclude: ['cypress/**/*'],
     },
   },
+  viewportWidth: 1920,
+  viewportHeight: 1080,
   component: {
     devServer: {
       framework: 'react',

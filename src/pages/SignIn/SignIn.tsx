@@ -19,10 +19,13 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (!error && !!user) {
+      localStorage.setItem('userId', user.uid);
       setUser(user);
       navigate(HOME_PAGE);
     }
     if (error) {
+      console.log(error);
+
       form.setError('password', { message: (error.response?.data as any)?.error?.message || FieldErrorMessage.authFailed });
     }
   }, [user, error, setUser, form, navigate]);
