@@ -10,11 +10,11 @@ export const NotFound = () => {
       url: '/books',
     },
     {
-        icon: <FaRobot />,
-        label: 'Chat book',
-        description: 'Another point of view may be?',
-        url: '/',
-      },
+      icon: <FaRobot />,
+      label: 'Chat book',
+      description: 'Another point of view may be?',
+      url: '/',
+    },
   ];
 
   const navigate = useNavigate();
