@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { User } from 'firebase/auth';
 import { useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -23,6 +24,7 @@ export const SignUp = () => {
       navigate(CATEGORIES);
     }
     if (!error && !!user) {
+      localStorage.setItem('userId', user.uid);
       setUser(user);
       createUser({ firebaseId: user.uid });
     }

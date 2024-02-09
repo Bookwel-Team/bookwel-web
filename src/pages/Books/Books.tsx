@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Book, Category } from '@onitsiky/bookwel-typescript-client';
 import { useEffect } from 'react';
 import { BsTriangle } from 'react-icons/bs';
@@ -29,12 +30,10 @@ export const Books = () => {
           <GoSearchIcon size={24} />
         </span>
       </div>
-      <div className='mt-5 mb-1 py-4 w-5/6 flex flex-nowrap overflow-x-auto justify-center items-center overflow-y-hidden'>
-        <CategoryFilter onChange={handleCategoryChange} />
-      </div>
+      <CategoryFilter onChange={handleCategoryChange} />
       <div className='h-[85%] mt-4 w-5/6 overflow-y-auto'>
         <div className='flex w-full flex-wrap justify-center'>
-          {!isLoading && data && data.length > 0 && data.map(data => <BookCardCover book={data} />)}
+          {!isLoading && data && data.length > 0 && data.map(data => <BookCardCover key={data.id} userId={localStorage.getItem('userId') || ''} book={data} />)}
           {isLoading && (
             <div className='w-[20%] h-[23rem] m-4  relative flex items-center justify-center'>
               <div>
@@ -44,9 +43,9 @@ export const Books = () => {
               </div>
             </div>
           )}
-          {!isLoading && data && data.length > 0 && (
+          {!isLoading && data && data.length === 0 && (
             <div className='w-[20%] h-[23rem] m-4  relative flex items-center justify-center'>
-              <div>
+              <div className='w-[50vw]'>
                 <h1 className='text-2xl text-primary'>No available books for know.</h1>
               </div>
             </div>

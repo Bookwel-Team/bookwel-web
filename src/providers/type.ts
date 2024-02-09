@@ -9,7 +9,11 @@ export type TCreateUser = typeof userProvider.createUser;
 export type TCategory = typeof categoryProvider.getAll;
 export type TReaction = typeof reactionProvider.reactCategory;
 export type TGetAllUser = typeof bookProvider.getAll;
+export type TDownloadBook = typeof bookProvider.downloadBook;
 export type TGetAllCategory = typeof categoryProvider.getAll;
+export type TReactToBook = typeof reactionProvider.reactToBook;
+export type TGetBookReaction = typeof reactionProvider.getBookReaction;
+export type TGetBookReactions = typeof reactionProvider.getBookReactions;
 
 export type TGetAllBookParams = {
   author?: string;
