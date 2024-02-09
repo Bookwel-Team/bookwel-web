@@ -12,6 +12,6 @@ export const authProvider = {
     return user;
   },
   getAuthConf() {
-    return new Configuration({ accessToken: firebaseAuth.currentUser?.getIdToken() });
+    return new Configuration({ accessToken: firebaseAuth.currentUser?.getIdToken(true) });
   },
 };

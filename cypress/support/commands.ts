@@ -27,6 +27,9 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 
+import '../../src/index.css';
+import '@cypress/code-coverage/support';
+
 export const dataCy = (name: string) => {
   return cy.get(`[data-cy='${name}']`);
 };

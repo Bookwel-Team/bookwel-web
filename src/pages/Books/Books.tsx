@@ -1,42 +1,55 @@
-import { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Book, Category } from '@onitsiky/bookwel-typescript-client';
+import { useEffect } from 'react';
+import { BsTriangle } from 'react-icons/bs';
 import { GoSearch as GoSearchIcon } from 'react-icons/go';
-import { staticBooks, staticCategory } from './statics';
+import { CategoryFilter } from '.';
+import { TGetAllUser } from '../../providers';
+import { bookProvider } from '../../providers/book-provider';
+import { BookCardCover } from '../../utilities/components';
+import { useFetch } from '../../utilities/hooks';
 
 export const Books = () => {
-  const [category, setCategory] = useState('History');
+  const { fetch, data, isLoading } = useFetch<Book[], TGetAllUser>(bookProvider.getAll);
 
-  const handleClick = (category: string) => () => setCategory(category);
+  const handleCategoryChange = (category: Category) => {
+    fetch({ category: category.name });
+  };
+
+  useEffect(() => {
+    if (!isLoading && data === null) {
+      fetch({ author: '', category: '' });
+    }
+  }, []);
 
   return (
     <div className='w-screen h-screen flex flex-col justify-start items-center p-4'>
       <div className='w-1/3 relative'>
         <input type='text' placeholder='Search book' className='input input-bordered bg-white w-full rounded-full' />
-        <span className='absolute top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg'>
+        <span className='absolute active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg'>
           <GoSearchIcon size={24} />
         </span>
       </div>
-      <div className='mt-5 mb-1 py-4 w-5/6 flex flex-nowrap overflow-x-auto justify-center items-center overflow-y-hidden'>
-        {staticCategory.map(label => (
-          <div
-            onClick={handleClick(label)}
-            key={label}
-            className={`py-3 px-9 border cursor-pointer border-secondary mx-2 ${category === label ? 'bg-secondary text-white' : 'text-secondary'}`}
-          >
-            <p>{label}</p>
-          </div>
-        ))}
-      </div>
+      <CategoryFilter onChange={handleCategoryChange} />
       <div className='h-[85%] mt-4 w-5/6 overflow-y-auto'>
         <div className='flex w-full flex-wrap justify-center'>
-          {staticBooks.map(data => (
-            <div key={data.name} className='w-[20%] h-[23rem] m-4 bg-slate-50 relative'>
-              <img src={data.image || ''} className='absolute top-0 left-0 w-full h-full object-cover' alt={data.name} />
-              <div className='absolute p-3 bottom-0 bg-gradient-to-t from-secondary to-transparent'>
-                <h1 className='font-bold text-white'>{data.name}</h1>
-                <p className='text-white'>{data.description}</p>
+          {!isLoading && data && data.length > 0 && data.map(data => <BookCardCover key={data.id} userId={localStorage.getItem('userId') || ''} book={data} />)}
+          {isLoading && (
+            <div className='w-[20%] h-[23rem] m-4  relative flex items-center justify-center'>
+              <div>
+                <span className=''>
+                  <BsTriangle className='m-2 animate-spin text-primary' size={24} />
+                </span>
               </div>
             </div>
-          ))}
+          )}
+          {!isLoading && data && data.length === 0 && (
+            <div className='w-[20%] h-[23rem] m-4  relative flex items-center justify-center'>
+              <div className='w-[50vw]'>
+                <h1 className='text-2xl text-primary'>No available books for know.</h1>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

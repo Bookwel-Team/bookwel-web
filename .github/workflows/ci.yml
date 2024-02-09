@@ -1,0 +1,53 @@
+name: CI
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  VITE_APP_API_KEY: secret.API_KEY
+  VITE_APP_API_URL: secret.API_URL
+  VITE_APP_AUTH_DOMAIN: secret.AUTH_DOMAIN
+  VITE_APP_DATABASE_URL: secret.DATABASE_URL
+  VITE_APP_PROJECT_ID: secret.PROJECT_ID
+  VITE_APP_STORAGE_BUCKET: secret.STORAGE_BUCKET
+  VITE_APP_MESSAGING_SENDER_ID: secret.MESSAGING_SENDER_ID
+  VITE_APP_APP_ID: secret.APP_ID
+  VITE_APP_MEASUREMENT_ID: secret.MEASUREMENT_ID
+
+jobs:
+  tests:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Connect to github npm
+        run: |
+          echo '${{ secrets.CONFIG_GITHUB_NPM }}' > ~/.npmrc
+
+      - name: Component testing
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          install-command: npm install --legacy-peer-deps
+          component: true
+
+      - name: E2E testing
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          install-command: npm install --legacy-peer-deps
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17.x
+      - run: npm install --location=global prettier
+      - run: prettier --check "src/**/*.{js,ts,tsx}" "./**/*.{json,yml,yaml}"
