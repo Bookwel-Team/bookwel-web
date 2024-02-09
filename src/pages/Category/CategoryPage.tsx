@@ -4,13 +4,15 @@ import SoftButton from '../../utilities/components/button/SoftButton';
 import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { FaChevronRight } from 'react-icons/fa';
 import { useFetch } from '../../utilities/hooks';
-import { Category, CrupdateReaction, ReactionStatus } from '@onitsiky/bookwel-typescript-client';
+import { Category, CategoryReaction, CrupdateReaction, ReactionStatus } from '@onitsiky/bookwel-typescript-client';
 import { TCategory, TReaction } from '../../providers';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../utilities/context/auth-context';
 import { IoClose } from 'react-icons/io5';
 import { reactionProvider, categoryProvider } from '../../providers';
 import { BsTriangle } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+import { HOME_PAGE } from '../../utilities/constants';
 
 type ReactableCategory = Category & CrupdateReaction;
 
@@ -19,7 +21,6 @@ export const CategoryPage = () => {
   const [reactableCategory, setReactable] = useState<ReactableCategory[]>([]);
 
   const [isLoading, setLoad] = useState(false);
-  const { fetch: reactCat } = useFetch<Category, TReaction>(reactionProvider.reactCategory);
 
   const { fetch, data: categoryList, isLoading: loadCategory } = useFetch<Category[], TCategory>(categoryProvider.getAll);
   const { uid: userId } = useAuth();
@@ -28,14 +29,13 @@ export const CategoryPage = () => {
     reaction_status: ReactionStatus.UNSET,
   };
 
+  const navigate = useNavigate();
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const localSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value;
-    const newList = reactableCategory?.reduce(
-      (list, category) => (category.name?.toLocaleLowerCase().includes(name.toLocaleLowerCase()) ? [...list, category] : [...list]),
-      [] as Category[]
-    ) as Category[];
+    const newList = reactableCategory?.filter(category => category.name?.toLocaleLowerCase().includes(name.toLocaleLowerCase())) as Category[];
     setResult(newList);
   };
 
@@ -49,13 +49,17 @@ export const CategoryPage = () => {
     return { ...reactableTemplate, ...category };
   };
 
-  const reactAllCategory = () => {
+  const reactAllCategory = async () => {
     setLoad(true);
+    const promises: Promise<CategoryReaction>[] = [];
     reactableCategory.forEach(one => {
-      reactCat(one.id as string, one);
+      const res = reactionProvider.reactCategory(one.id as string, one);
+      promises.push(res);
     });
-
-    setLoad(false);
+    Promise.allSettled(promises).then(() => {
+      setLoad(false);
+      navigate(HOME_PAGE);
+    });
   };
 
   const reactOneCategory = (category: ReactableCategory) => {
@@ -66,13 +70,13 @@ export const CategoryPage = () => {
 
   useEffect(() => {
     fetch();
-  }, [fetch]);
+  }, []);
 
   useEffect(() => {
     if (categoryList) {
       setReactable(categoryList.map(one => categoryToReactable(one)));
     }
-  }, [categoryList, setReactable, categoryToReactable]);
+  }, [categoryList]);
 
   return (
     <div className='flex items-center justify-center relative min-h-screen '>
@@ -103,6 +107,7 @@ export const CategoryPage = () => {
               ? resultSearch?.map(one => (
                   <SoftButton
                     label={`${one.name}`}
+                    test-id='category-button'
                     active={one.reaction_status === ReactionStatus.LIKE}
                     clickFn={() => reactOneCategory(one)}
                     key={`©at-${one.id}`}
