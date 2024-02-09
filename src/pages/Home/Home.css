@@ -1,0 +1,7 @@
+.header__banner {
+  background-image: url('../../assets/banner-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+}
