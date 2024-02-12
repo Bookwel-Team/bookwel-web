@@ -1,4 +1,4 @@
-import { BsRobot as BsRobotIcon } from 'react-icons/bs';
+import { BsRobot as BsRobotIcon, BsTriangle } from 'react-icons/bs';
 import './Home.css';
 import Logo from '../../assets/logo-nobg.png';
 import Navbar from './components/Navbar';
@@ -10,7 +10,7 @@ export const Home = () => {
   const [chatResponse, setChatResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = async e => {
+  const handleClick = async (e: any) => {
     try {
       setIsLoading(true);
       e.preventDefault();
@@ -57,7 +57,7 @@ export const Home = () => {
                   value={message}
                 />
                 <span className='absolute top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg'>
-                  <BsRobotIcon onClick={handleClick} size={24} />
+                  {isLoading ? <BsTriangle className='m-2 animate-spin text-primary' size={24} /> : <BsRobotIcon onClick={handleClick} size={24} />}
                 </span>
               </form>
             </div>
