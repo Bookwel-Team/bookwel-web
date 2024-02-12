@@ -13,17 +13,36 @@ env:
   VITE_APP_MEASUREMENT_ID: secret.MEASUREMENT_ID
 
 jobs:
-  test-components:
+  tests-component:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Connect to github npm
         run: |
           echo '${{ secrets.CONFIG_GITHUB_NPM }}' > ~/.npmrc
 
-      - name: E2E testing
+      - name: Run test
+        uses: cypress-io/github-action@v6
+        with:
+          install-command: npm install --legacy-peer-deps
+          start: npm run dev
+          component: true
+
+  tests-e2e:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Connect to github npm
+        run: |
+          echo '${{ secrets.CONFIG_GITHUB_NPM }}' > ~/.npmrc
+
+      - name: Run test
         uses: cypress-io/github-action@v6
         with:
           install-command: npm install --legacy-peer-deps
