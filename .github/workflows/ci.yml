@@ -34,6 +34,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm run dev
+          command: npm run test:e2e
           install-command: npm install --legacy-peer-deps
 
       - name: Upload coverage reports to Codecov
