@@ -2,7 +2,7 @@ const category1 = { id: 'testId1', name: 'nameTest1' };
 const category2 = { id: 'testId2', name: 'nameTest2' };
 
 describe('Test Categories', () => {
-  it.skip('Test categories interface and validation', () => {
+  it('Test categories interface and validation', () => {
     cy.visit('/categories');
     cy.intercept('GET', '/categories', [category1, category2]);
     cy.intercept('GET', '/categories/testId1/reaction', {});
