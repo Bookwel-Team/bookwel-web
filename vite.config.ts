@@ -9,7 +9,10 @@ export default defineConfig({
     istanbul({
       cypress: true,
       requireEnv: false,
+      nycrcPath: './.nycrc.json',
       forceBuildInstrument: true,
+      include: './src/*',
+      extension: ['.ts', '.tsx'],
     }),
   ],
   optimizeDeps: {
