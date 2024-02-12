@@ -27,15 +27,15 @@ export const BookCardCover: FC<BookCardCoverProps> = ({ book, needReaction = tru
     console.log(needReaction, userId, book.id);
     if (needReaction && userId && book.id) {
       const bookId = book.id;
-      reactToBook(bookId, userId, reaction?.reaction_status === ReactionStatus.LIKE ? ReactionStatus.UNSET : ReactionStatus.LIKE).then(() => {
+      reactToBook(bookId, userId, reaction?.reactionStatus === ReactionStatus.LIKE ? ReactionStatus.UNSET : ReactionStatus.LIKE).then(() => {
         getBookReaction(bookId, userId);
       });
     }
   };
 
   const handleDownload = () => {
-    if (book.title && book.file_link) {
-      downloadBook(book.title, book.file_link);
+    if (book.title && book.fileLink) {
+      downloadBook(book.title, book.fileLink);
     }
   };
 
@@ -62,7 +62,7 @@ export const BookCardCover: FC<BookCardCoverProps> = ({ book, needReaction = tru
           {needReaction && (
             <span
               onClick={handleReact}
-              className={`relative active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white ${reaction?.reaction_status === ReactionStatus.LIKE ? 'bg-error' : 'bg-primary'} p-2 rounded-full shadow-lg`}
+              className={`relative active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white ${reaction?.reactionStatus === ReactionStatus.LIKE ? 'bg-error' : 'bg-primary'} p-2 rounded-full shadow-lg`}
             >
               {reactionLoading ? <BsTriangle className='animate-spin text-white' size={24} /> : <FaRegHeart data-cy='reaction-button' size={24} />}
             </span>
