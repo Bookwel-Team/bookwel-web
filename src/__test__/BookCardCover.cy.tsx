@@ -6,14 +6,14 @@ describe('Test book card cover component', () => {
     const bookMock: Book = {
       author: 'Masashi Kishimoto',
       category: 'Manga',
-      file_link: 'file',
-      file_name: 'book-one.pdf',
+      fileLink: 'file',
+      fileName: 'book-one.pdf',
       id: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5',
       title: 'Naruto',
     };
 
     cy.intercept('GET', '/books/1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5/reactions', [
-      { reaction_status: ReactionStatus.LIKE, reactor_id: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
+      { reactionStatus: ReactionStatus.LIKE, reactorId: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
     ] as BookReaction[]);
 
     cy.mount(<BookCardCover book={bookMock} userId='1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' />);
@@ -25,11 +25,11 @@ describe('Test book card cover component', () => {
     cy.dataCy('reaction-button').should('exist');
 
     cy.intercept('GET', '/books/1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5/reactions', [
-      { reaction_status: ReactionStatus.UNSET, reactor_id: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
+      { reactionStatus: ReactionStatus.UNSET, reactorId: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
     ] as BookReaction[]);
 
     cy.intercept('PUT', '/books/1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5/reaction', [
-      { reaction_status: ReactionStatus.UNSET, reactor_id: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
+      { reactionStatus: ReactionStatus.UNSET, reactorId: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
     ] as BookReaction[]);
 
     cy.dataCy('reaction-button').click();
@@ -40,8 +40,8 @@ describe('Test book card cover component', () => {
     const bookMock: Book = {
       author: 'Masashi Kishimoto',
       category: 'Manga',
-      file_link: 'file',
-      file_name: 'book-one.pdf',
+      fileLink: 'file',
+      fileName: 'book-one.pdf',
       id: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5',
       title: 'Naruto',
     };
