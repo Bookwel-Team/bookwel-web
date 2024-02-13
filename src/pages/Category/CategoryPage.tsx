@@ -11,10 +11,10 @@ import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { TCategory, TReactToCategory, categoryProvider, reactionProvider } from '../../providers';
-import SoftButton from '../../utilities/components/button/SoftButton';
-import { FieldErrorMessage, HOME_PAGE } from '../../utilities/constants';
-import { useAuth } from '../../utilities/context/auth-context';
-import { useFetch } from '../../utilities/hooks';
+import SoftButton from '../../common/components/button/SoftButton';
+import { FieldErrorMessage, HOME_PAGE } from '../../common/constants';
+import { useAuth } from '../../common/context/auth-context';
+import { useFetch } from '../../common/hooks';
 
 export const CategoryPage = () => {
   const { fetch, data: categoryList, isLoading: loadCategory } = useFetch<Category[], TCategory>(categoryProvider.getAll);

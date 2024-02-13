@@ -1,5 +1,5 @@
 import { Book, BookReaction, ReactionStatus } from '@onitsiky/bookwel-typescript-client';
-import { BookCardCover } from '../utilities/components';
+import { BookCardCover } from '../common/components';
 
 describe('Test book card cover component', () => {
   it.only("Test show book's information for logged user", () => {

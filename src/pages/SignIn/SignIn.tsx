@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { TSingIn, authProvider } from '../../providers';
-import { RHFTextInput, RHFPasswordInput, Button } from '../../utilities/components';
-import { HOME_PAGE, FieldErrorMessage } from '../../utilities/constants';
-import { useAuth } from '../../utilities/context/auth-context';
-import { useFetch } from '../../utilities/hooks';
-import { TLoginInput, loginResolver } from '../../utilities/resolvers';
+import { RHFTextInput, RHFPasswordInput, Button } from '../../common/components';
+import { HOME_PAGE, FieldErrorMessage } from '../../common/constants';
+import { useAuth } from '../../common/context/auth-context';
+import { useFetch } from '../../common/hooks';
+import { TLoginInput, loginResolver } from '../../common/resolvers';
 import { FaLock as FaLockIcon, FaUser as FaUserIcon } from 'react-icons/fa';
-import { SING_UP_PAGE } from '../../utilities/constants/path';
+import { SING_UP_PAGE } from '../../common/constants/path';
 
 export const SignIn = () => {
   const form = useForm<TLoginInput>({ mode: 'all', resolver: loginResolver });

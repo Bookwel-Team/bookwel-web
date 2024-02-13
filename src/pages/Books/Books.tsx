@@ -6,8 +6,8 @@ import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { CategoryFilter } from '.';
 import { TGetAllUser } from '../../providers';
 import { bookProvider } from '../../providers/book-provider';
-import { BookCardCover } from '../../utilities/components';
-import { useFetch } from '../../utilities/hooks';
+import { BookCardCover } from '../../common/components';
+import { useFetch } from '../../common/hooks';
 
 export const Books = () => {
   const { fetch, data, isLoading } = useFetch<Book[], TGetAllUser>(bookProvider.getAll);
