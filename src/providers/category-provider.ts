@@ -1,8 +1,8 @@
-import { apiProvider } from '.';
+import { categoryApi } from '.';
 
 export const categoryProvider = {
   async getAll(name?: string) {
-    const { data } = await apiProvider.categoryApi().getAllCategories(name);
+    const { data } = await categoryApi().getAllCategories(name);
     return data;
   },
 };

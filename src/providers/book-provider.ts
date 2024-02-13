@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { apiProvider, TGetAllBookParams } from '.';
+import { TGetAllBookParams, bookApi } from '.';
 
 export const bookProvider = {
   async getAll({ author, category }: TGetAllBookParams) {
-    const { data } = await apiProvider.bookApi().getBooks(author, category);
+    const { data } = await bookApi().getBooks(author, category);
     return data;
   },
   async downloadBook(fileName: string, url: string) {

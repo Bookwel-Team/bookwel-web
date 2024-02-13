@@ -1,13 +1,13 @@
 import { CategoryCrupdateReaction, CrupdateReaction } from '@onitsiky/bookwel-typescript-client';
-import { apiProvider } from '.';
+import { reactionApi } from '.';
 
 export const reactionProvider = {
-  reactToCategory: async (createReactions: CategoryCrupdateReaction[]) => {
-    const response = await apiProvider.reactionApi().crupdateReactionsToCategories(createReactions);
+  async reactToCategory(createReactions: CategoryCrupdateReaction[]) {
+    const response = await reactionApi().crupdateReactionsToCategories(createReactions);
     return response.data;
   },
   async reactToBook(bookId: string, reaction: CrupdateReaction) {
-    const { data } = await apiProvider.reactionApi().crupdateReactionToABook(bookId, reaction);
+    const { data } = await reactionApi().crupdateReactionToABook(bookId, reaction);
     return data;
   },
 };
