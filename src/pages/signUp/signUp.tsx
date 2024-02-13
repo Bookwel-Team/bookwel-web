@@ -1,39 +1,41 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { User } from 'firebase/auth';
-import { useEffect } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useSnackbar } from 'notistack';
+import { FormProvider, useForm } from 'react-hook-form';
+import { FaLock as FaLockIcon, FaMailBulk as FaMailBulkIcon } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { TSingUp, TCreateUser, authProvider, userProvider } from '../../providers';
-import { RHFTextInput, RHFPasswordInput, Button } from '../../common/components';
-import { LOGIN_PAGE } from '../../common/constants';
+import { Button, RHFPasswordInput, RHFTextInput } from '../../common/components';
+import { FieldErrorMessage, LOGIN_PAGE } from '../../common/constants';
+import { CATEGORIES } from '../../common/constants/path';
 import { useAuth } from '../../common/context/auth-context';
 import { useFetch } from '../../common/hooks';
-import { FaLock as FaLockIcon, FaMailBulk as FaMailBulkIcon } from 'react-icons/fa';
 import { signUpResolver } from '../../common/resolvers';
-import { CATEGORIES } from '../../common/constants/path';
+import { TCreateUser, TSingUp, authProvider, userProvider } from '../../providers';
 
 export const SignUp = () => {
   const form = useForm({ mode: 'all', resolver: signUpResolver });
   const { setUser } = useAuth();
   const { isLoading, data: user, fetch, error } = useFetch<User, TSingUp>(authProvider.signUp);
-  const { fetch: createUser, isLoading: loadCreate, error: errorUser, data: userCreated } = useFetch<User, TCreateUser>(userProvider.createUser);
+  const { fetch: createUser, isLoading: loadCreate, error: errorUser } = useFetch<User, TCreateUser>(userProvider.createUser);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
-  useEffect(() => {
-    if (!error && !!user && !errorUser && !!userCreated) {
-      navigate(CATEGORIES);
+  const handleSubmit = form.handleSubmit(async ({ password, email }) => {
+    await fetch(email, password);
+    if (error || !user) {
+      form.setError('password', { message: (error?.response?.data as any)?.error?.message });
+      return;
     }
-    if (!error && !!user) {
-      localStorage.setItem('userId', user.uid);
-      setUser(user);
-      createUser({ firebaseId: user.uid });
+    setUser(user);
+    await createUser({ firebaseId: user.uid });
+    if (errorUser) {
+      enqueueSnackbar(FieldErrorMessage.unexpectedError, { className: 'error' });
+      return;
     }
-    if (error) {
-      form.setError('password', { message: (error.response?.data as any)?.error?.message });
-    }
-  }, [user, error, setUser, form, navigate, errorUser, userCreated]);
+    await userProvider.whoami();
+    navigate(CATEGORIES);
+  });
 
-  const handleSubmit = form.handleSubmit(({ password, email }) => fetch(email, password));
   return (
     <div>
       <h1 className='text-2xl font-bold mb-7'>Sign Up</h1>
