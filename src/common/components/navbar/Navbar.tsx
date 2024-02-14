@@ -7,7 +7,7 @@ export const Navbar = () => {
   return (
     <div className='navbar fixed bg-white shadow-md z-50'>
       <div className='flex-1'>
-        <a className='btn btn-ghost text-xl'>daisyUI</a>
+        <a className='text-secondary text-xl font-semibold tracking-wide ml-6'>BOOKWEL</a>
       </div>
       <div className='flex-none gap-2'>
         <div className='dropdown dropdown-end'>

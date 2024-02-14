@@ -23,7 +23,7 @@ export const Books = () => {
   }, []);
 
   return (
-    <div className='w-screen h-screen flex flex-col justify-start items-center p-4'>
+    <div className='w-screen h-[90vh] flex flex-col justify-start items-center p-4'>
       <div className='w-1/3 relative'>
         <input type='text' placeholder='Search book' className='input input-bordered bg-white w-full rounded-full' />
         <span className='absolute active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg'>
