@@ -18,12 +18,12 @@ export const SignIn = () => {
 
   const handleSubmit = form.handleSubmit(async ({ password, email }) => {
     await fetch(email, password);
-    if (error || !user) {
+    if (error) {
       form.setError('password', { message: (error?.response?.data as any)?.error?.message || FieldErrorMessage.authFailed });
       return;
     }
     await userProvider.whoami();
-    setUser(user);
+    setUser(user as User);
     navigate(HOME_PAGE);
   });
 
