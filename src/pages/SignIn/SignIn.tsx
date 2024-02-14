@@ -4,7 +4,7 @@ import { FaLock as FaLockIcon, FaUser as FaUserIcon } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, RHFPasswordInput, RHFTextInput } from '../../common/components';
 import { FieldErrorMessage, HOME_PAGE } from '../../common/constants';
-import { SING_UP_PAGE } from '../../common/constants/path';
+import { SIGN_UP_PAGE } from '../../common/constants/path';
 import { useAuth } from '../../common/context/auth-context';
 import { useFetch } from '../../common/hooks';
 import { TLoginInput, loginResolver } from '../../common/resolvers';
@@ -36,8 +36,8 @@ export const SignIn = () => {
           <RHFPasswordInput label='Password' name='password' hideLabel startIcon={<FaLockIcon />} />
           <Button label='Submit' isLoading={isLoading} type='submit' className='w-full btn-primary' />
           <div className='mt-2 flex justify-between'>
-            <Link to={SING_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'></Link>
-            <Link to={SING_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'>
+            <Link to={SIGN_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'></Link>
+            <Link to={SIGN_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'>
               Create account ?
             </Link>
           </div>

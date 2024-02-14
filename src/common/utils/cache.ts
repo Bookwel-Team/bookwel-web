@@ -37,9 +37,9 @@ export const getCached = {
     return getJSONItem(WHOAMI);
   },
   userFirebaseId() {
-    localStorage.getItem(USER_FIREBASE_ID);
+    return localStorage.getItem(USER_FIREBASE_ID);
   },
   userBackendId() {
-    localStorage.getItem(USER_BACKEND_ID);
+    return localStorage.getItem(USER_BACKEND_ID);
   },
 };

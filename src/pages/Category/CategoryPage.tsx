@@ -12,9 +12,8 @@ import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import SoftButton from '../../common/components/button/SoftButton';
 import { HOME_PAGE } from '../../common/constants';
-import { useAuth } from '../../common/context/auth-context';
 import { useFetch } from '../../common/hooks';
-import { getErrorMessage } from '../../common/utils';
+import { getCached, getErrorMessage } from '../../common/utils';
 import { TCategory, TReactToCategory, categoryProvider, reactionProvider } from '../../providers';
 
 export const CategoryPage = () => {
@@ -28,7 +27,6 @@ export const CategoryPage = () => {
   const { enqueueSnackbar } = useSnackbar();
   const onChangeFetch = useMemo(() => debounce((e: ChangeEvent<HTMLInputElement>) => fetch(e.target.value.length > 0 ? e.target.value : undefined), 1000), []);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { uid: userId } = useAuth();
 
   const navigate = useNavigate();
   const resetSearch = () => {
@@ -47,7 +45,11 @@ export const CategoryPage = () => {
   };
 
   const reactOnCategory = (category: Category) => () => {
-    const currentCategoryCrupdateReaction: CategoryCrupdateReaction = { categoryId: category.id, reactorId: userId, reactionStatus: ReactionStatus.LIKE };
+    const currentCategoryCrupdateReaction: CategoryCrupdateReaction = {
+      categoryId: category.id,
+      reactorId: getCached.userBackendId() || '',
+      reactionStatus: ReactionStatus.LIKE,
+    };
     const currentCategoriesCrupdateReaction = { ...categoriesCrupdateReaction, [category.id || '']: currentCategoryCrupdateReaction };
 
     if (category.reactionStatistics?.byCurrentUser === ReactionStatus.LIKE) {

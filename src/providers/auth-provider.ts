@@ -17,4 +17,7 @@ export const authProvider = {
   getAuthConf() {
     return new Configuration({ accessToken: firebaseAuth.currentUser?.getIdToken(true) });
   },
+  logout() {
+    localStorage.clear();
+  },
 };

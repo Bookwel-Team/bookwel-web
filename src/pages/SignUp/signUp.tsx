@@ -38,7 +38,7 @@ export const SignUp = () => {
       enqueueSnackbar(getErrorMessage(errorUser), { className: 'error' });
       return () => {};
     }
-    getWhoami();
+    createdUser && getWhoami();
   }, [createdUser]);
 
   useEffect(() => {
