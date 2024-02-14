@@ -86,10 +86,11 @@ export const Home = () => {
                     type='text'
                     onChange={handleChange}
                     placeholder='Message Chat...'
+                    name='chatbot-input'
                     className='input input-bordered bg-white w-full text-gray-500 rounded-full'
                     value={message}
                   />
-                  <span className='absolute top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg'>
+                  <span className='absolute top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg' data-cy='bot-btn'>
                     {isLoading ? <BsTriangle className='m-2 animate-spin text-primary' size={24} /> : <BsRobotIcon onClick={handleSubmit} size={24} />}
                   </span>
                 </form>
