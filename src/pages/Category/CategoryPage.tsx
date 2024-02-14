@@ -10,11 +10,12 @@ import { FaChevronRight } from 'react-icons/fa';
 import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { TCategory, TReactToCategory, categoryProvider, reactionProvider } from '../../providers';
 import SoftButton from '../../common/components/button/SoftButton';
-import { FieldErrorMessage, HOME_PAGE } from '../../common/constants';
+import { HOME_PAGE } from '../../common/constants';
 import { useAuth } from '../../common/context/auth-context';
 import { useFetch } from '../../common/hooks';
+import { getErrorMessage } from '../../common/utils';
+import { TCategory, TReactToCategory, categoryProvider, reactionProvider } from '../../providers';
 
 export const CategoryPage = () => {
   const { fetch, data: categoryList, isLoading: loadCategory } = useFetch<Category[], TCategory>(categoryProvider.getAll);
@@ -40,7 +41,7 @@ export const CategoryPage = () => {
       if (!categoryReactionError) {
         navigate(HOME_PAGE);
       } else {
-        enqueueSnackbar((categoryReactionError.response?.data as any).message || FieldErrorMessage.unexpectedError, { className: 'bg-error' });
+        enqueueSnackbar(getErrorMessage(categoryReactionError), { className: 'bg-error' });
       }
     });
   };

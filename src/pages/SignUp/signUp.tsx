@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Whoami } from '@onitsiky/bookwel-typescript-client';
 import { User } from 'firebase/auth';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
@@ -6,13 +7,13 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { FaLock as FaLockIcon, FaMailBulk as FaMailBulkIcon } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, RHFPasswordInput, RHFTextInput } from '../../common/components';
-import { FieldErrorMessage, LOGIN_PAGE } from '../../common/constants';
+import { LOGIN_PAGE } from '../../common/constants';
 import { CATEGORIES } from '../../common/constants/path';
 import { useAuth } from '../../common/context/auth-context';
 import { useFetch } from '../../common/hooks';
 import { signUpResolver } from '../../common/resolvers';
+import { getErrorMessage } from '../../common/utils';
 import { TCreateUser, TSingUp, TWhoami, authProvider, userProvider } from '../../providers';
-import { Whoami } from '@onitsiky/bookwel-typescript-client';
 
 export const SignUp = () => {
   const form = useForm({ mode: 'all', resolver: signUpResolver });
@@ -25,17 +26,16 @@ export const SignUp = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    if (error || !user) {
-      form.setError('password', { message: (error?.response?.data as any)?.error?.message });
+    if (error) {
+      form.setError('password', { message: getErrorMessage(error, 'authFailed') });
       return () => {};
     }
-    setUser(user);
-    createUser({ firebaseId: user.uid, profile: { email: user.email || '' } });
+    user && createUser({ firebaseId: user.uid, profile: { email: user.email || '' } });
   }, [user]);
 
   useEffect(() => {
     if (errorUser) {
-      enqueueSnackbar(FieldErrorMessage.unexpectedError, { className: 'error' });
+      enqueueSnackbar(getErrorMessage(errorUser), { className: 'error' });
       return () => {};
     }
     getWhoami();
@@ -43,8 +43,9 @@ export const SignUp = () => {
 
   useEffect(() => {
     if (whoamiError) {
-      enqueueSnackbar(FieldErrorMessage.unexpectedError, { className: 'error' });
+      enqueueSnackbar(getErrorMessage(whoamiError), { className: 'error' });
     } else if (whoami) {
+      user && setUser(user);
       navigate(CATEGORIES);
     }
   }, [whoami]);
