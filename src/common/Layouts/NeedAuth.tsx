@@ -6,7 +6,7 @@ export const NeedAuth = () => {
   return (
     <AuthProvider>
       <Navbar />
-      <div className='pt-16'>
+      <div className='pt-16 w-screen h-[90vh]'>
         <Outlet />
       </div>
     </AuthProvider>

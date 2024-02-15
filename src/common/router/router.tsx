@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Books, Home, SignIn, SignUp, CategoryPage, NotFound } from '../../pages';
+import { Books, Home, SignIn, SignUp, CategoryPage, NotFound, Profile } from '../../pages';
 import { AuthLayout, NeedAuth } from '../Layouts';
 
 export const AppRouter = createBrowserRouter([
@@ -15,6 +15,10 @@ export const AppRouter = createBrowserRouter([
       {
         path: '/books',
         element: <Books />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
     ],
   },
