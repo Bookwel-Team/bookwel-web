@@ -13,9 +13,16 @@ export const Navbar = () => {
   return (
     <div className='navbar fixed bg-white shadow-md z-50'>
       <div className='flex-1'>
-        <a className='text-secondary text-xl font-semibold tracking-wide ml-6'>BOOKWEL</a>
+        <Link to={'/books'} className='text-secondary text-xl font-semibold tracking-wide ml-6'>
+          BOOKWEL
+        </Link>
       </div>
       <div className='flex-none gap-2'>
+        <ul className='menu menu-horizontal px-1'>
+          <li>
+            <Link to='/chat'>Chatbot</Link>
+          </li>
+        </ul>
         <div className='dropdown dropdown-end'>
           <div tabIndex={0} role='button' className='btn btn-ghost btn-circle avatar'>
             <div className='w-10 rounded-full'>
