@@ -1,4 +1,4 @@
-import { CreateUser } from '@onitsiky/bookwel-typescript-client';
+import { CreateUser, UserProfile } from '@onitsiky/bookwel-typescript-client';
 import { securityApi, userApi } from '.';
 import { cache, getCached } from '../common/utils';
 
@@ -17,6 +17,11 @@ export const userProvider = {
   async getOne() {
     const usedId = getCached.userBackendId() || '';
     const { data } = await userApi().getUserById(usedId);
+    return data;
+  },
+  async updateOne(user: UserProfile) {
+    const usedId = getCached.userBackendId() || '';
+    const { data } = await userApi().updateUserProfile(usedId, user);
     return data;
   },
 };
