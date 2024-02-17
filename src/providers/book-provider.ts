@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { TGetAllBookParams, bookApi } from '.';
+import { emptyToUndefined } from '../common/utils';
 
 export const bookProvider = {
   async getAll({ author, category }: TGetAllBookParams) {
-    const { data } = await bookApi().getBooks(author, category);
+    const { data } = await bookApi().getBooks(emptyToUndefined(author), emptyToUndefined(category));
     return data;
   },
   async downloadBook(fileName: string, url: string) {

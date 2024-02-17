@@ -8,7 +8,7 @@ import { FaLock as FaLockIcon, FaMailBulk as FaMailBulkIcon } from 'react-icons/
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, RHFPasswordInput, RHFTextInput } from '../../common/components';
 import { LOGIN_PAGE } from '../../common/constants';
-import { CATEGORIES } from '../../common/constants/path';
+import { CATEGORIES_PAGE } from '../../common/constants/paths';
 import { useAuth } from '../../common/context/auth-context';
 import { useFetch } from '../../common/hooks';
 import { signUpResolver } from '../../common/resolvers';
@@ -46,7 +46,7 @@ export const SignUp = () => {
       enqueueSnackbar(getErrorMessage(whoamiError), { className: 'error' });
     } else if (whoami) {
       user && setUser(user);
-      navigate(CATEGORIES);
+      navigate(CATEGORIES_PAGE);
     }
   }, [whoami]);
 

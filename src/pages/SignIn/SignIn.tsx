@@ -4,7 +4,7 @@ import { FaLock as FaLockIcon, FaUser as FaUserIcon } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, RHFPasswordInput, RHFTextInput } from '../../common/components';
 import { FieldErrorMessage, HOME_PAGE } from '../../common/constants';
-import { SIGN_UP_PAGE } from '../../common/constants/path';
+import { SIGN_UP_PAGE } from '../../common/constants/paths';
 import { useAuth } from '../../common/context/auth-context';
 import { useFetch } from '../../common/hooks';
 import { TLoginInput, loginResolver } from '../../common/resolvers';

@@ -1,7 +1,6 @@
 import { BsRobot as BsRobotIcon, BsTriangle } from 'react-icons/bs';
 import './Home.css';
 import Logo from '../../assets/logo-nobg.png';
-import Navbar from './components/Navbar';
 import { ChangeEvent, useState } from 'react';
 import { aiProvider } from '../../providers/ai-provider';
 import { AiResponse } from '@onitsiky/bookwel-typescript-client';
@@ -36,7 +35,6 @@ export const Home = () => {
   return (
     <div className='w-screen'>
       <div className='header__banner h-screen w-full'>
-        <Navbar />
         <div className='h-5/6 flex justify-center items-center'>
           <div className='p-10 glass text-gray-100 rounded-box text-center h-full overflow-hidden max-w-[95vw]'>
             <h1 className='text-7xl mb-4'>BookWel</h1>

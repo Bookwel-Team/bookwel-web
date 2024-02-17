@@ -5,13 +5,13 @@ import { AuthLayout, NeedAuth } from '../Layouts';
 export const AppRouter = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: '/',
     element: <NeedAuth />,
     children: [
+      {
+        path: '/',
+        element: <Home />,
+        errorElement: <NotFound />,
+      },
       {
         path: '/books',
         element: <Books />,
