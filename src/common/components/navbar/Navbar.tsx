@@ -13,7 +13,7 @@ export const Navbar = () => {
   return (
     <div className='navbar fixed bg-white shadow-md z-50'>
       <div className='flex-1'>
-        <Link to={'/'} className='text-secondary text-xl font-semibold tracking-wide ml-6'>
+        <Link to={'/books'} className='text-secondary text-xl font-semibold tracking-wide ml-6'>
           BOOKWEL
         </Link>
       </div>
