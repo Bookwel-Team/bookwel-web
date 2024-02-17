@@ -4,13 +4,13 @@ import { useEffect } from 'react';
 import { BsTriangle } from 'react-icons/bs';
 import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { CategoryFilter } from '.';
-import { TGetAllUser } from '../../providers';
+import { TGetAllBooks } from '../../providers';
 import { bookProvider } from '../../providers/book-provider';
 import { BookCardCover } from '../../common/components';
 import { useFetch } from '../../common/hooks';
 
 export const Books = () => {
-  const { fetch, data, isLoading } = useFetch<Book[], TGetAllUser>(bookProvider.getAll);
+  const { fetch, data, isLoading } = useFetch<Book[], TGetAllBooks>(bookProvider.getAll);
 
   const handleCategoryChange = (category: Category) => {
     fetch({ category: category.name });
