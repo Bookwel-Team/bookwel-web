@@ -43,22 +43,25 @@ export const BookCardCover: FC<BookCardCoverProps> = ({ book, needReaction = tru
   };
 
   return (
-    <div key={currentBook?.id} className='w-[17rem] h-[12rem] shadow-lg m-4 p-4 rounded-lg bg-slate-50 relative overflow-hidden'>
+    <div key={currentBook?.id} className='w-[20rem] h-[25rem] shadow-lg m-4 p-4 rounded-lg  relative overflow-hidden bg-cover bg-no-repeat'>
+      <img src={currentBook?.pictureLink} alt={currentBook?.title} className='object-cover w-full h-full absolute top-0 left-0' />
       {isCurrentBookLoading && (
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
           <BsTriangle className='animate-spin text-white' size={24} />
         </div>
       )}
       {!isCurrentBookLoading && (
-        <>
-          <h1 className='text-2xl font-bold text-primary mb-6'>{currentBook?.title}</h1>
-          <div className='flex items-center gap-4'>
-            <GiFeather size={24} />
-            <p>{currentBook?.author}</p>
-          </div>
-          <div className='flex mt-2 items-center gap-4'>
-            <LuBook size={24} />
-            <p>{currentBook?.category}</p>
+        <div className='absolute h-full w-full top-0 left-0'>
+          <div className='bg-gradient-to-b from-black to-transparent w-full p-4'>
+            <h1 className='text-2xl font-bold text-primary mb-6'>{currentBook?.title}</h1>
+            <div className='flex items-center text-primary gap-4'>
+              <GiFeather size={24} />
+              <p>{currentBook?.author}</p>
+            </div>
+            <div className='flex mt-2 items-center text-primary gap-4'>
+              <LuBook size={24} />
+              <p>{currentBook?.category}</p>
+            </div>
           </div>
           <div className='flex absolute bottom-0 left-0 w-full p-3 justify-end items-center'>
             <div className='flex gap-3'>
@@ -83,7 +86,7 @@ export const BookCardCover: FC<BookCardCoverProps> = ({ book, needReaction = tru
               </span>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
