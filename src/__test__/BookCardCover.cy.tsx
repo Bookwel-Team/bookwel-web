@@ -16,6 +16,7 @@ describe('Test book card cover component', () => {
     cy.intercept('GET', '/books/1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5/reactions', [
       { reactionStatus: ReactionStatus.LIKE, reactorId: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
     ] as BookReaction[]);
+    cy.intercept('GET', '/books/1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5', bookMock);
 
     cy.mount(
       <BrowserRouter>
@@ -37,7 +38,6 @@ describe('Test book card cover component', () => {
       { reactionStatus: ReactionStatus.UNSET, reactorId: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
     ] as BookReaction[]);
 
-    cy.dataCy('reaction-button').click();
     cy.dataCy('download-button').click();
   });
 
