@@ -7,6 +7,10 @@ export const bookProvider = {
     const { data } = await bookApi().getBooks(emptyToUndefined(author), emptyToUndefined(category));
     return data;
   },
+  async getOne(bookId: string) {
+    const { data } = await bookApi().getBookById(bookId);
+    return data;
+  },
   async downloadBook(fileName: string, url: string) {
     const response = await axios({
       url: url,
