@@ -33,7 +33,7 @@ export const Chatbot = () => {
   };
 
   return (
-    <div style={{ backgroundImage: `url(${BACKGROUND})` }} className='bg-cover bg-no-repeat flex justify-center items-center h-[93.4vh] overflow-hiden'>
+    <div style={{ backgroundImage: `url(${BACKGROUND})` }} className='bg-cover bg-no-repeat flex justify-center items-center h-[93.4vh]'>
       <div className='h-5/6 flex justify-center items-center'>
         <div className='p-10 glass text-gray-100 rounded-box text-center h-full overflow-hidden max-w-[95vw]'>
           <h1 className='text-7xl mb-4'>BookWel</h1>

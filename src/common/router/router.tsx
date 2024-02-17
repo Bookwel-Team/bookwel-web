@@ -6,6 +6,7 @@ export const AppRouter = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: '/',

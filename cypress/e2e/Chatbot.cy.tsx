@@ -4,7 +4,7 @@ describe('Chatbot Test', () => {
   it('Test chatbot integration', () => {
     cy.intercept('POST', 'http://13.39.144.179:3000/chats', mockChatbotResponse).as('sendChatRequest');
 
-    cy.visit('/');
+    cy.visit('/chat');
     cy.contains('BookWel');
     cy.contains('Welcome to BookWel, your personalized book recommendation app!');
     cy.contains('Tired of wandering aimlessly in literary landscapes?');
