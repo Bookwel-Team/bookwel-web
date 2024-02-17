@@ -1,7 +1,13 @@
+import { FaUser } from 'react-icons/fa';
 import { MdLogout } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { LOGIN_PAGE } from '../../constants/path';
 import { authProvider } from '../../../providers';
+import { LOGIN_PAGE, PROFILE_PAGE } from '../../constants/paths';
+
+const menu = [
+  { label: 'Profile', path: PROFILE_PAGE, icon: <FaUser /> },
+  { label: 'Logout', path: LOGIN_PAGE, action: authProvider.logout, icon: <MdLogout /> },
+];
 
 export const Navbar = () => {
   return (
@@ -16,13 +22,15 @@ export const Navbar = () => {
               <img alt='Tailwind CSS Navbar component' src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' />
             </div>
           </div>
-          <ul tabIndex={0} className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'>
-            <li>
-              <Link to={LOGIN_PAGE} onClick={authProvider.logout} className='py-3 text-md flex bg-white'>
-                <span className='flex-1'>Logout</span>
-                <MdLogout />
-              </Link>
-            </li>
+          <ul tabIndex={0} className='mt-3 z-[1] gap-2 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'>
+            {menu.map(({ action, icon, label, path }) => (
+              <li key={label}>
+                <Link to={path} onClick={action} className='py-3 text-md flex bg-white'>
+                  <span className='flex-1'>{label}</span>
+                  {icon}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
