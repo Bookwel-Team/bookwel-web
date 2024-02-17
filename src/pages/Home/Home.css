@@ -5,3 +5,7 @@
   padding: 0;
   margin: 0;
 }
+
+.scollbar-hide::-webkit-scrollbar {
+  display: none;
+}
