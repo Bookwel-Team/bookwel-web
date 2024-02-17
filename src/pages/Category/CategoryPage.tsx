@@ -10,7 +10,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import SoftButton from '../../common/components/button/SoftButton';
+import { SoftButton } from '../../common/components';
 import { HOME_PAGE } from '../../common/constants';
 import { useFetch } from '../../common/hooks';
 import { getCached, getErrorMessage } from '../../common/utils';
