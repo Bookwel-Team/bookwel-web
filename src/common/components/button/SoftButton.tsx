@@ -6,7 +6,7 @@ type ButtonPropsType = {
   onClick: () => void;
 };
 
-const SoftButton: FC<ButtonPropsType> = ({ label, active, onClick }) => {
+export const SoftButton: FC<ButtonPropsType> = ({ label, active, onClick }) => {
   const [isActive, setIsActive] = useState<boolean>(active || false);
   return (
     <button
@@ -20,5 +20,3 @@ const SoftButton: FC<ButtonPropsType> = ({ label, active, onClick }) => {
     </button>
   );
 };
-
-export default SoftButton;

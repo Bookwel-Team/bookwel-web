@@ -1,5 +1,6 @@
 import { Book, BookReaction, ReactionStatus } from '@onitsiky/bookwel-typescript-client';
 import { BookCardCover } from '../common/components';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Test book card cover component', () => {
   it.only("Test show book's information for logged user", () => {
@@ -16,7 +17,11 @@ describe('Test book card cover component', () => {
       { reactionStatus: ReactionStatus.LIKE, reactorId: '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' },
     ] as BookReaction[]);
 
-    cy.mount(<BookCardCover book={bookMock} userId='1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' />);
+    cy.mount(
+      <BrowserRouter>
+        <BookCardCover book={bookMock} userId='1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5' />
+      </BrowserRouter>
+    );
 
     cy.contains('Naruto');
     cy.contains('Masashi Kishimoto');
