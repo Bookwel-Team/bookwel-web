@@ -6,11 +6,11 @@ export const AppRouter = createBrowserRouter([
   {
     path: '/',
     element: <NeedAuth />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',
         element: <Home />,
-        errorElement: <NotFound />,
       },
       {
         path: '/books',
@@ -25,6 +25,7 @@ export const AppRouter = createBrowserRouter([
   {
     path: '/auth',
     element: <AuthLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/auth/signin',
@@ -39,5 +40,6 @@ export const AppRouter = createBrowserRouter([
   {
     path: '/categories',
     element: <CategoryPage />,
+    errorElement: <NotFound />,
   },
 ]);
