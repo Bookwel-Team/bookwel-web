@@ -1,8 +1,8 @@
-import { apiProvider } from '.';
+import { aiApi } from '.';
 
 export const aiProvider = {
   chat: async (message: string) => {
-    const { data } = await apiProvider.aiApi().chat(message);
+    const { data } = await aiApi().chat(message);
     return data;
   },
 };
