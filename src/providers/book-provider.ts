@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { TGetAllBookParams, bookApi } from '.';
 import { emptyToUndefined } from '../common/utils';
+import { TUploadBookParams } from './type';
 
 export const bookProvider = {
   async getAll({ author, category }: TGetAllBookParams) {
@@ -26,5 +27,9 @@ export const bookProvider = {
     link.download = `${fileName}.${fileExtension}`;
     link.click();
     window.URL.revokeObjectURL(link.href);
+  },
+  async upload({ picture, book, category }: TUploadBookParams) {
+    const { data } = await bookApi().uploadNewBook(category, book, picture);
+    return data;
   },
 };

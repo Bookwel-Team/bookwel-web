@@ -17,8 +17,15 @@ export type TDownloadBook = typeof bookProvider.downloadBook;
 export type TGetAllCategory = typeof categoryProvider.getAll;
 export type TReactToBook = typeof reactionProvider.reactToBook;
 export type TReactToCategory = typeof reactionProvider.reactToCategory;
+export type TUploadBook = typeof bookProvider.upload;
 
 export type TGetAllBookParams = {
   author?: string;
   category?: string;
+};
+
+export type TUploadBookParams = {
+  picture: File;
+  book: File;
+  category: string;
 };
