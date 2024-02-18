@@ -35,7 +35,7 @@ export const Books = () => {
         <form onSubmit={handleTitleSearch}>
           <input
             type='text'
-            name='seach-input'
+            data-cy='search-input'
             onChange={e => {
               setSerachQuery(e.target.value);
             }}
