@@ -1,8 +1,8 @@
-import axios from 'axios';
+import { aiApi } from '.';
 
 export const aiProvider = {
   chat: async (message: string) => {
-    const { data } = await axios.post(`${import.meta.env.VITE_APP_API_URL}/chats`, message);
+    const { data } = await aiApi().chat(message);
     return data;
   },
 };

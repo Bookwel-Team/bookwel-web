@@ -3,7 +3,7 @@ import { Category } from '@onitsiky/bookwel-typescript-client';
 import { FC, useEffect, useState } from 'react';
 import { TGetAllCategory } from '../../providers';
 import { categoryProvider } from '../../providers/category-provider';
-import { useFetch } from '../../utilities/hooks';
+import { useFetch } from '../../common/hooks';
 import { CategoryFilterProps } from '.';
 import style from './style.module.css';
 

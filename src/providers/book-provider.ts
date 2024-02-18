@@ -1,9 +1,15 @@
 import axios from 'axios';
-import { apiProvider, TGetAllBookParams } from '.';
+import { TGetAllBookParams, bookApi } from '.';
+import { emptyToUndefined } from '../common/utils';
+import { TUploadBookParams } from './type';
 
 export const bookProvider = {
   async getAll({ author, category }: TGetAllBookParams) {
-    const { data } = await apiProvider.bookApi().getBooks(author, category);
+    const { data } = await bookApi().getBooks(emptyToUndefined(author), emptyToUndefined(category));
+    return data;
+  },
+  async getOne(bookId: string) {
+    const { data } = await bookApi().getBookById(bookId);
     return data;
   },
   async downloadBook(fileName: string, url: string) {
@@ -21,5 +27,9 @@ export const bookProvider = {
     link.download = `${fileName}.${fileExtension}`;
     link.click();
     window.URL.revokeObjectURL(link.href);
+  },
+  async upload({ picture, book, category }: TUploadBookParams) {
+    const { data } = await bookApi().uploadNewBook(category, book, picture);
+    return data;
   },
 };

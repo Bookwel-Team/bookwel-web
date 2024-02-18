@@ -1,15 +1,14 @@
 import { User } from 'firebase/auth';
-import { useEffect } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { TSingIn, authProvider } from '../../providers';
-import { RHFTextInput, RHFPasswordInput, Button } from '../../utilities/components';
-import { HOME_PAGE, FieldErrorMessage } from '../../utilities/constants';
-import { useAuth } from '../../utilities/context/auth-context';
-import { useFetch } from '../../utilities/hooks';
-import { TLoginInput, loginResolver } from '../../utilities/resolvers';
+import { FormProvider, useForm } from 'react-hook-form';
 import { FaLock as FaLockIcon, FaUser as FaUserIcon } from 'react-icons/fa';
-import { SING_UP_PAGE } from '../../utilities/constants/path';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, RHFPasswordInput, RHFTextInput } from '../../common/components';
+import { FieldErrorMessage, HOME_PAGE } from '../../common/constants';
+import { SIGN_UP_PAGE } from '../../common/constants/paths';
+import { useAuth } from '../../common/context/auth-context';
+import { useFetch } from '../../common/hooks';
+import { TLoginInput, loginResolver } from '../../common/resolvers';
+import { TSingIn, authProvider, userProvider } from '../../providers';
 
 export const SignIn = () => {
   const form = useForm<TLoginInput>({ mode: 'all', resolver: loginResolver });
@@ -17,20 +16,16 @@ export const SignIn = () => {
   const { isLoading, data: user, fetch, error } = useFetch<User, TSingIn>(authProvider.signIn);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!error && !!user) {
-      localStorage.setItem('userId', user.uid);
-      setUser(user);
-      navigate(HOME_PAGE);
-    }
+  const handleSubmit = form.handleSubmit(async ({ password, email }) => {
+    await fetch(email, password);
     if (error) {
-      console.log(error);
-
-      form.setError('password', { message: (error.response?.data as any)?.error?.message || FieldErrorMessage.authFailed });
+      form.setError('password', { message: (error?.response?.data as any)?.error?.message || FieldErrorMessage.authFailed });
+      return;
     }
-  }, [user, error, setUser, form, navigate]);
-
-  const handleSubmit = form.handleSubmit(({ password, email }) => fetch(email, password));
+    await userProvider.whoami();
+    setUser(user as User);
+    navigate(HOME_PAGE);
+  });
 
   return (
     <div>
@@ -41,8 +36,8 @@ export const SignIn = () => {
           <RHFPasswordInput label='Password' name='password' hideLabel startIcon={<FaLockIcon />} />
           <Button label='Submit' isLoading={isLoading} type='submit' className='w-full btn-primary' />
           <div className='mt-2 flex justify-between'>
-            <Link to={SING_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'></Link>
-            <Link to={SING_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'>
+            <Link to={SIGN_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'></Link>
+            <Link to={SIGN_UP_PAGE} className='text-blue-500 hover:text-blue-700 underline'>
               Create account ?
             </Link>
           </div>

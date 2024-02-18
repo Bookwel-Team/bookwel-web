@@ -27,7 +27,7 @@ export default defineConfig({
       require('@cypress/code-coverage/task')(on, config);
       return config;
     },
-    baseUrl: 'http://localhost:5173/',
+    baseUrl: 'http://localhost:3000/',
     specPattern: 'cypress/e2e/**/*.tsx',
   },
 });

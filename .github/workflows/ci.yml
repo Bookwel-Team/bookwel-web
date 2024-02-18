@@ -13,28 +13,41 @@ env:
   VITE_APP_MEASUREMENT_ID: secret.MEASUREMENT_ID
 
 jobs:
-  tests:
+  tests-component:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Connect to github npm
         run: |
           echo '${{ secrets.CONFIG_GITHUB_NPM }}' > ~/.npmrc
 
-      - name: Component testing
+      - name: Run test
         uses: cypress-io/github-action@v6
         with:
-          start: npm run dev
           install-command: npm install --legacy-peer-deps
+          start: npm run dev
           component: true
 
-      - name: E2E testing
+  tests-e2e:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Connect to github npm
+        run: |
+          echo '${{ secrets.CONFIG_GITHUB_NPM }}' > ~/.npmrc
+
+      - name: Run test
         uses: cypress-io/github-action@v6
         with:
-          start: npm run dev
           install-command: npm install --legacy-peer-deps
+          start: npm run dev
+          command: npm run test:e2e
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3

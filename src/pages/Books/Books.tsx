@@ -4,13 +4,13 @@ import { useEffect } from 'react';
 import { BsTriangle } from 'react-icons/bs';
 import { GoSearch as GoSearchIcon } from 'react-icons/go';
 import { CategoryFilter } from '.';
-import { TGetAllUser } from '../../providers';
+import { TGetAllBooks } from '../../providers';
 import { bookProvider } from '../../providers/book-provider';
-import { BookCardCover } from '../../utilities/components';
-import { useFetch } from '../../utilities/hooks';
+import { BookCardCover } from '../../common/components';
+import { useFetch } from '../../common/hooks';
 
 export const Books = () => {
-  const { fetch, data, isLoading } = useFetch<Book[], TGetAllUser>(bookProvider.getAll);
+  const { fetch, data, isLoading } = useFetch<Book[], TGetAllBooks>(bookProvider.getAll);
 
   const handleCategoryChange = (category: Category) => {
     fetch({ category: category.name });
@@ -23,7 +23,7 @@ export const Books = () => {
   }, []);
 
   return (
-    <div className='w-screen h-screen flex flex-col justify-start items-center p-4'>
+    <div className='w-screen h-[90vh] flex flex-col justify-start items-center p-4'>
       <div className='w-1/3 relative'>
         <input type='text' placeholder='Search book' className='input input-bordered bg-white w-full rounded-full' />
         <span className='absolute active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg'>

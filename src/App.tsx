@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
-import { AppRouter } from './utilities/router';
+import { AppRouter } from './common/router';
 import { SnackbarProvider } from 'notistack';
 
 function App() {

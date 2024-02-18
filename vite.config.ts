@@ -14,4 +14,8 @@ export default defineConfig({
   optimizeDeps: {
     entries: ['cypress/**/*', 'src/**/*'],
   },
+  server: {
+    host: true,
+    port: 3000,
+  },
 });

@@ -1,5 +1,5 @@
 import { FaPlane } from 'react-icons/fa';
-import { Button } from '../utilities/components';
+import { Button } from '../common/components';
 
 describe('Test button component', () => {
   it('Should display button with functionality', () => {
