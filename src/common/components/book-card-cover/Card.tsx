@@ -52,13 +52,13 @@ export const BookCardCover: FC<BookCardCoverProps> = ({ book, needReaction = tru
       )}
       {!isCurrentBookLoading && (
         <div className='absolute h-full w-full top-0 left-0'>
-          <div className='bg-gradient-to-b from-black to-transparent w-full p-4'>
-            <h1 className='text-2xl font-bold text-primary mb-6'>{currentBook?.title}</h1>
-            <div className='flex items-center text-primary gap-4'>
+          <div className='bg-gradient-to-b from-slate-900 from-20% to-transparent to-90% w-full p-4'>
+            <h1 className='text-2xl font-bold text-amber-300 mb-6'>{currentBook?.title}</h1>
+            <div className='flex items-center text-amber-300 gap-4'>
               <GiFeather size={24} />
               <p>{currentBook?.author}</p>
             </div>
-            <div className='flex mt-2 items-center text-primary gap-4'>
+            <div className='flex mt-2 items-center text-amber-300 gap-4'>
               <LuBook size={24} />
               <p>{currentBook?.category}</p>
             </div>
@@ -68,19 +68,19 @@ export const BookCardCover: FC<BookCardCoverProps> = ({ book, needReaction = tru
               <span
                 onClick={handleDownload}
                 data-cy='download-button'
-                className='active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white bg-primary p-2 rounded-full shadow-lg'
+                className='active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white bg-amber-300 p-2 rounded-full shadow-lg'
               >
                 {downloadBookLoading ? <BsTriangle className='animate-spin text-white' size={24} /> : <GoDownload size={24} />}
               </span>
               <span
                 onClick={handleReact(ReactionStatus.LIKE)}
-                className={`relative active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white ${currentBook?.reactionStatistics?.byCurrentUser === ReactionStatus.LIKE ? 'bg-green-600' : 'bg-primary'} p-2 rounded-full shadow-lg`}
+                className={`relative active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white ${currentBook?.reactionStatistics?.byCurrentUser === ReactionStatus.LIKE ? 'bg-green-600' : 'bg-amber-300'} p-2 rounded-full shadow-lg`}
               >
                 {isReactionLoading ? <BsTriangle className='animate-spin text-white' size={24} /> : <FaThumbsUp data-cy='reaction-button' size={24} />}
               </span>
               <span
                 onClick={handleReact(ReactionStatus.DISLIKE)}
-                className={`relative active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white ${currentBook?.reactionStatistics?.byCurrentUser === ReactionStatus.DISLIKE ? 'bg-error' : 'bg-primary'} p-2 rounded-full shadow-lg`}
+                className={`relative active:shadow-sx active:scale-[0.95] cursor-pointer top-1/2  text-white ${currentBook?.reactionStatistics?.byCurrentUser === ReactionStatus.DISLIKE ? 'bg-error' : 'bg-amber-300'} p-2 rounded-full shadow-lg`}
               >
                 {isReactionLoading ? <BsTriangle className='animate-spin text-white' size={24} /> : <FaThumbsDown data-cy='reaction-button' size={24} />}
               </span>
