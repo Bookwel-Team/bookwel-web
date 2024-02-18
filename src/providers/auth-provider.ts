@@ -20,6 +20,7 @@ export const authProvider = {
     return new Configuration({ accessToken: getCached.idToken() || '' });
   },
   logout() {
+    firebaseAuth.signOut();
     localStorage.clear();
   },
 };
