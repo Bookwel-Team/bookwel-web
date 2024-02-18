@@ -1,5 +1,5 @@
 import { FaUser } from 'react-icons/fa';
-import { MdLogout } from 'react-icons/md';
+import { MdLogout, MdOutlineFileUpload } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { authProvider } from '../../../providers';
 import { LOGIN_PAGE, PROFILE_PAGE } from '../../constants/paths';
@@ -21,6 +21,11 @@ export const Navbar = () => {
         <ul className='menu menu-horizontal px-1'>
           <li className='text-lg text-gray-500 font-semibold'>
             <Link to='/chat'>Chatbot</Link>
+          </li>
+        </ul>
+        <ul className='menu menu-horizontal px-1'>
+          <li className='text-lg text-gray-500 font-semibold'>
+            <Link to='/upload-book'> <MdOutlineFileUpload />  Upload</Link>
           </li>
         </ul>
         <div className='dropdown dropdown-end'>

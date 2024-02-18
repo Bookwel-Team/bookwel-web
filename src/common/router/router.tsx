@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Books, Chatbot, SignIn, SignUp, CategoryPage, NotFound, Profile, Home } from '../../pages';
+import { Books, Chatbot, SignIn, SignUp, CategoryPage, NotFound, Profile, Home, UploadBook } from '../../pages';
 import { AuthLayout, NeedAuth } from '../Layouts';
 
 export const AppRouter = createBrowserRouter([
@@ -20,6 +20,10 @@ export const AppRouter = createBrowserRouter([
       {
         path: '/books',
         element: <Books />,
+      },
+      {
+        path: '/upload-book',
+        element: <UploadBook />
       },
       {
         path: '/profile',
