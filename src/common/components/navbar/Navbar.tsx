@@ -19,7 +19,7 @@ export const Navbar = () => {
       </div>
       <div className='flex-none gap-2'>
         <ul className='menu menu-horizontal px-1'>
-          <li>
+          <li className='text-lg text-gray-500 font-semibold'>
             <Link to='/chat'>Chatbot</Link>
           </li>
         </ul>
