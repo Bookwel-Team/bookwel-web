@@ -30,5 +30,4 @@ export interface InputAutocomplete {
   loadItems: boolean;
   label: string;
   onChange(val: string): void;
-  resetValue(): void;
 }

@@ -57,7 +57,6 @@ export const UploadBook = () => {
                 label='Category'
                 items={categoryList?.map(category => category.name) as []}
                 onChange={onChangeFetch}
-                resetValue={() => {}}
                 loadItems={loadCategory}
                 data-cy='input-category'
               />

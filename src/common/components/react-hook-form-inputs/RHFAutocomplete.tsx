@@ -1,21 +1,15 @@
 import { ChangeEvent, useRef, useState } from 'react';
 import { IoMdArrowDropdownCircle, IoMdArrowDropupCircle } from 'react-icons/io';
-import { IoClose } from 'react-icons/io5';
 import { BsTriangle } from 'react-icons/bs';
 import { useFormContext } from 'react-hook-form';
 import { InputAutocomplete } from './types';
 
 export const RHFAutocomplete = (props: InputAutocomplete) => {
-  const { items, label, onChange, resetValue, loadItems, name, ...others } = props;
+  const { items, label, onChange, loadItems, name, ...others } = props;
   const ref = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const { watch, setValue } = useFormContext();
-
-  const resetInput = () => {
-    if (inputRef.current) inputRef.current.value = '';
-    resetValue();
-  };
 
   const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -41,15 +35,10 @@ export const RHFAutocomplete = (props: InputAutocomplete) => {
           ref={inputRef}
           placeholder='Search category'
           name={name}
+          data-cy='autocomplete-input'
           className='input input-bordered bg-white w-full rounded-full'
           onChange={inputChange}
         />
-        <span
-          onClick={resetInput}
-          className='text-primary absolute text-md text-center right-10 bottom-1.5 top-1.5 rounded-xl text-xl px-3 py-2 cursor-pointer'
-        >
-          <IoClose />
-        </span>
         <span className='absolute top-1.5 bottom-1.5 right-1 p-2 cursor-pointer' onClick={() => setOpen(!open)} data-cy='autocomplete-show'>
           {open ? <IoMdArrowDropupCircle size={24} /> : <IoMdArrowDropdownCircle size={24} />}
         </span>

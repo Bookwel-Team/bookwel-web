@@ -10,6 +10,8 @@ describe('Test Upload book', () => {
         cy.dataCy('input-pdf').selectFile("cypress/fixtures/assets/book-one.pdf")
         cy.dataCy('autocomplete-show').click()
         cy.contains(categoryList[0].name).click()
+        cy.dataCy('autocomplete-input').type("blablabla")
+        cy.contains('No category found.')
 
         cy.dataCy('submit-book').click()
         cy.contains('Book added succesfully.')
