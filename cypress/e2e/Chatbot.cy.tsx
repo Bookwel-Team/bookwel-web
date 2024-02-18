@@ -2,7 +2,7 @@ import { mockChatbotResponse } from './mock/chatbot-response';
 
 describe('Chatbot Test', () => {
   it('Test chatbot integration', () => {
-    cy.intercept('POST', 'http://13.39.144.179:3000/chats', mockChatbotResponse).as('sendChatRequest');
+    cy.intercept('POST', '/chats', mockChatbotResponse).as('sendChatRequest');
 
     cy.visit('/chat');
     cy.contains('BookWel');
