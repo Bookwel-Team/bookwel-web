@@ -4,8 +4,8 @@ import { emptyToUndefined } from '../common/utils';
 import { TUploadBookParams } from './type';
 
 export const bookProvider = {
-  async getAll({ author, category }: TGetAllBookParams) {
-    const { data } = await bookApi().getBooks(emptyToUndefined(author), undefined, emptyToUndefined(category));
+  async getAll({ author, title, category }: TGetAllBookParams) {
+    const { data } = await bookApi().getBooks(emptyToUndefined(author), emptyToUndefined(title), emptyToUndefined(category));
     return data;
   },
   async getOne(bookId: string) {
