@@ -21,6 +21,7 @@ export type TUploadBook = typeof bookProvider.upload;
 
 export type TGetAllBookParams = {
   author?: string;
+  title?: string;
   category?: string;
 };
 
