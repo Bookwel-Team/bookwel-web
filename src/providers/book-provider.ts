@@ -29,7 +29,7 @@ export const bookProvider = {
     window.URL.revokeObjectURL(link.href);
   },
   async upload({ picture, book, category }: TUploadBookParams) {
-    const { data } = await bookApi().uploadNewBook(category, book, picture)
+    const { data } = await bookApi().uploadNewBook(category, book, picture);
     return data;
   },
 };

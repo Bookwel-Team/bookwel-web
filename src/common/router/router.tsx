@@ -23,7 +23,7 @@ export const AppRouter = createBrowserRouter([
       },
       {
         path: '/upload-book',
-        element: <UploadBook />
+        element: <UploadBook />,
       },
       {
         path: '/profile',

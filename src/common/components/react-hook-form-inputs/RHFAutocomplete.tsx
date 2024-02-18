@@ -28,7 +28,11 @@ export const RHFAutocomplete = (props: InputAutocomplete) => {
     <div className='my-3 w-full relative'>
       <div className='text-neutral label'>
         <span className='label-text'>{label}</span>
-        {watch(name) && <span className=' label-text rounded-xl p-1 text-xs ' style={{border: '1px solid gray'}}>{watch(name)}</span>}
+        {watch(name) && (
+          <span className=' label-text rounded-xl p-1 text-xs ' style={{ border: '1px solid gray' }}>
+            {watch(name)}
+          </span>
+        )}
       </div>
       <div ref={ref} className='relative w-full'>
         <input

@@ -25,7 +25,10 @@ export const Navbar = () => {
         </ul>
         <ul className='menu menu-horizontal px-1'>
           <li className='text-lg text-gray-500 font-semibold'>
-            <Link to='/upload-book'> <MdOutlineFileUpload />  Upload</Link>
+            <Link to='/upload-book'>
+              {' '}
+              <MdOutlineFileUpload /> Upload
+            </Link>
           </li>
         </ul>
         <div className='dropdown dropdown-end'>

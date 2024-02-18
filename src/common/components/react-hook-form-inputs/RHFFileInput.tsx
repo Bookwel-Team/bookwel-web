@@ -43,7 +43,7 @@ export const RHFFileInput: FC<InputFileProps> = props => {
   };
 
   return (
-    <label className={`form-control my-3 w-full ${containerClassName}`} style={{display: hideAll? 'none': ''}}>
+    <label className={`form-control my-3 w-full ${containerClassName}`} style={{ display: hideAll ? 'none' : '' }}>
       {!hideLabel && (
         <div className={`${error ? 'text-error' : 'text-neutral'} label`}>
           <span className='label-text'>{label}</span>
