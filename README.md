@@ -9,6 +9,7 @@ Enhance your reading experience with our AI-powered book suggestion project! Thi
 - **Personalized Recommendations:** Discover books tailored to your unique interests and preferences.
 - **User-Friendly Interface:** An intuitive interface for a seamless and enjoyable experience.
 - **AI Algorithms:** Cutting-edge algorithms analyze user data to generate accurate and relevant book suggestions.
+- **Themes:** the application themes depends on the computer's one (Dark or Light).
 
 ## Getting Started ⚒️
 
