@@ -17,7 +17,7 @@ export const authProvider = {
     return user;
   },
   getAuthConf() {
-    return new Configuration({ accessToken: getCached.idToken() || '' });
+    return new Configuration({ accessToken: firebaseAuth.currentUser.getIdToken(true) || '' });
   },
   logout() {
     firebaseAuth.signOut();
