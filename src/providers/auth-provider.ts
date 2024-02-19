@@ -1,6 +1,6 @@
 import { Configuration } from '@onitsiky/bookwel-typescript-client';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { cache, getCached } from '../common/utils';
+import { cache } from '../common/utils';
 import { firebaseAuth } from './config';
 
 export const authProvider = {
@@ -17,7 +17,7 @@ export const authProvider = {
     return user;
   },
   getAuthConf() {
-    return new Configuration({ accessToken: firebaseAuth.currentUser.getIdToken(true) || '' });
+    return new Configuration({ accessToken: firebaseAuth.currentUser?.getIdToken(true) || '' });
   },
   logout() {
     firebaseAuth.signOut();
