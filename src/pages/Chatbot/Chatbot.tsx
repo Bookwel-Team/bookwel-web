@@ -33,9 +33,9 @@ export const Chatbot = () => {
   };
 
   return (
-    <div style={{ backgroundImage: `url(${BACKGROUND})` }} className='bg-cover bg-no-repeat flex justify-center items-center h-[93.4vh]'>
-      <div className='h-5/6 flex justify-center items-center'>
-        <div className='p-10 glass text-gray-100 rounded-box text-center h-full overflow-hidden max-w-[95vw]'>
+    <div style={{ backgroundImage: `url(${BACKGROUND})` }} className='bg-cover bg-no-repeat flex justify-center items-center h-screen '>
+      <div className='flex justify-center items-center'>
+        <div className='p-10 glass text-gray-100 rounded-box text-center h-full overflow-hidden max-w-[95vw] relative'>
           <h1 className='text-7xl mb-4'>BookWel</h1>
           {!chatResponse.length || !currentMessage ? (
             <>
@@ -56,7 +56,7 @@ export const Chatbot = () => {
               <p>Here are some results for your query</p>
               <div className='mt-2 overflow-scroll overflow-x-hidden scrollbar-hide h-full'>
                 {chatResponse.map(item => (
-                  <div className='collapse collapse-arrow bg-base-200 my-1'>
+                  <div className='collapse collapse-arrow bg-base-200 my-1 text-secondary'>
                     <input type='radio' name='my-accordion-2' />
                     <div className='collapse-title text-xl font-medium'>
                       {item.title}
@@ -76,7 +76,7 @@ export const Chatbot = () => {
               </div>
             </div>
           )}
-          <div className='absolute bottom-3 left-1/2 -translate-x-1/2 w-11/12'>
+          <div className='relative w-11/12'>
             <div className='w-full relative'>
               <form onSubmit={handleSubmit}>
                 <input
@@ -87,7 +87,7 @@ export const Chatbot = () => {
                   className='input input-bordered bg-white w-full text-gray-500 rounded-full'
                   value={message}
                 />
-                <span className='absolute top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg' data-cy='bot-btn'>
+                <span className='absolute top-1/2 -translate-y-1/2 right-1 text-white bg-secondary p-2 rounded-full shadow-lg cursor-pointer' data-cy='bot-btn'>
                   {isLoading ? <BsTriangle className='m-2 animate-spin text-primary' size={24} /> : <BsRobotIcon onClick={handleSubmit} size={24} />}
                 </span>
               </form>

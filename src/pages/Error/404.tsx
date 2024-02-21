@@ -13,7 +13,7 @@ export const NotFound = () => {
       icon: <FaRobot />,
       label: 'Chat book',
       description: 'Another point of view may be?',
-      url: '/',
+      url: '/chat',
     },
   ];
 
